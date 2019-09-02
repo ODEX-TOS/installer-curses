@@ -47,6 +47,28 @@ models:
       keymap: "#keymap#" # set your keymap
       hostname: "#host#" # the hostname of your system
       password: "#rootpwd#" # the root password
+  - packages:
+      - package:
+          name: "root"
+          packagefile: "packages.txt"
+      - package:
+          name: "yay"
+          install: "yay -Syu --noconfirm"
+          packagefile: "yay.txt"
+      - package:
+          name: "wayland"
+          install: "yay -Syu --noconfirm"
+          packagefile: "wayland.txt"
+  - scripts:
+      - script:
+          name: "root"
+          file: "rootinstall.sh"
+      - script:
+          name: "userinstall"
+          file: "userinstall.sh"
+      - script:
+          name: "yayinstall"
+          file: "yayinstall.sh"
 execution:
   - partitiontable: "#disk#" # device name of your disk
   - format: "#disk#" # device name of your disk
@@ -58,4 +80,13 @@ execution:
       steps:
         - systemsetup:
         - createuser: "#user#" # set this to the name of your user
+        - package: "root"
+        - script: "root"
         - bootloader: "#disk#" # device name of your disk
+  - chroot:
+      user: "#user#"
+      steps:
+        - script: "yayinstall"
+        - package: "yay"
+        - package: "wayland"
+        - script: "userinstall"
