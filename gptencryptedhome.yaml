@@ -80,13 +80,13 @@ execution:
       steps:
         - systemsetup:
         - createuser: "#user#" # set this to the name of your user
-        - package: "root"
+        - packages: "root"
         - script: "root"
         - bootloader: "#disk#" # device name of your disk
   - chroot:
       user: "#user#"
       steps:
         - script: "yayinstall"
-        - package: "yay"
-        - package: "wayland"
+        - packages: "yay"
+        - packages: "wayland"
         - script: "userinstall"

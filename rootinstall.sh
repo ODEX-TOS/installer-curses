@@ -9,3 +9,7 @@ ANSI_COLOR="0;36"
 HOME_URL="https://tos.pbfp.xyz/"
 LOGO=toslinux' > /etc/os-release
 
+echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+printf "[tos]\nSigLevel = Optional TrustAll\nServer = https://repo.pbfp.xyz\n" >> /etc/pacman.conf
+

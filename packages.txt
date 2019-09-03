@@ -9,6 +9,7 @@ xorg-xinit
 xorg-xinput
 xorg-xprop
 xorg-xrandr
+xorg-server
 xclip
 ttf-bitstream-vera
 ttf-computer-modern-fonts
@@ -28,3 +29,5 @@ font-bh-ttf
 bdf-unifont
 ttf-dejavu
 jsoncpp
+git
+sudo
