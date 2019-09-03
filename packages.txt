@@ -1,4 +1,1 @@
-linux-tos
 jsoncpp
-git
-sudo

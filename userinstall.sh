@@ -49,23 +49,4 @@ cd ~/.vim/bundle/YouCompleteMe
 python3 install.py --all
 sudo sh -c 'curl https://raw.githubusercontent.com/ODEX-TOS/tos-live/master/toslive/version-edit.txt > /etc/version'
 
-function gpu {
-    gpu_cmd="$(lspci -mm | awk -F '\\"|\\" \\"|\\(' '/"Display|"3D|"VGA/ {a[$0] = $3 " " $4} END {for(i in a){if(!seen[a[i]]++) print a[i]}}')"
-
-    # TODO: Only install nvidia driver if the device is supported
-    if [[ "$gpu_cmd" == *NVIDIA* ]]; then
-        yay -Syu nvidia
-    fi
-
-    # TODO: Only install driver is card is supported otherwise install AMD catalyst
-    # TODO: check if gpu_cmd returns AMD or amd?
-    if [[ "$gpu_cmd" == *AMD* ]]; then
-        yay -Syu mesa lib32-mesa xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver 
-    fi
-
-    if [[ "$gpu_cmd" == *Intel* ]]; then
-        yay -Syu mesa lib32-mesa xf86-video-intel vulkan-intel
-    fi
-} 
-
-gpu
+sudo chsh $USER /bin/zsh

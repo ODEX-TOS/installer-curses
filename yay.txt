@@ -1,4 +1,5 @@
 i3-gaps-tos
+linux-tos
 st-tos
 vim
 bluez
@@ -83,3 +84,4 @@ nerd-fonts-complete
 font-bh-ttf
 bdf-unifont
 ttf-dejavu
+python-dbus
