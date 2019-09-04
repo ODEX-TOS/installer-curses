@@ -1,0 +1,19 @@
+models:
+  - disks:
+      - disk:
+          device: "#disk#"
+          size: "#size#"
+          gpt: true
+          partitions:
+            - partition:
+                name: "efi"
+                mount: "/boot/efi"
+                filesystem: "#system#"
+                start: "1MiB"
+                end: "200MiB"
+            - partition:
+                name: "boot"
+                mount: "/boot"
+                filesystem: "#system#"
+                start: "200MiB"
+                end: "800MiB"

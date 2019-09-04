@@ -1,0 +1,6 @@
+            - partition:
+                name: "root"
+                mount: "/"
+                filesystem: "#system#"
+                start: "800MiB"
+                end: "100%"

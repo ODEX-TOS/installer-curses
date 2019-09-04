@@ -1,20 +1,20 @@
 models:
   - disks:
       - disk:
-          device: "#disk#"
-          size: "#size#"
+          device: "/dev/sda"
+          size: "477G"
           gpt: true
           partitions:
             - partition:
                 name: "efi"
                 mount: "/boot/efi"
-                filesystem: "#system#"
+                filesystem: "ext4"
                 start: "1MiB"
                 end: "200MiB"
             - partition:
                 name: "boot"
                 mount: "/boot"
-                filesystem: "#system#"
+                filesystem: "ext4"
                 start: "200MiB"
                 end: "800MiB"
             - partition:
@@ -24,25 +24,24 @@ models:
                 start: "800MiB"
                 end: "100%"
                 encrypted: True
-                password: "#epwd#"
+                password: "123"
                 logicvolumes:
                   - volume:
                       name: "root"
-                      size: "#rootsize#"
+                      size: "477G"
                       mountpoint: "/"
-
   - chroots:
       - chroot:
           name: "root"
   - users:
       - user:
-          name: "#user#" # set your username
-          password: "#password#" # set its password
+          name: "alpha" # set your username
+          password: "123" # set its password
   - system:
-      local: "#local#" # change the language of your system (a list is found in /etc/locale.gen)
-      keymap: "#keymap#" # set your keymap
-      hostname: "#host#" # the hostname of your system
-      password: "#rootpwd#" # the root password
+      local: "aa_DJ.UTF-8" # change the language of your system (a list is found in /etc/locale.gen)
+      keymap: "azerty" # set your keymap
+      hostname: "tos" # the hostname of your system
+      password: "root" # the root password
   - packages:
       - package:
           name: "root"
@@ -66,21 +65,21 @@ models:
           name: "yayinstall"
           file: "yayinstall.sh"
 execution:
-  - partitiontable: "#disk#" # device name of your disk
-  - format: "#disk#" # device name of your disk
-  - mount: "#disk#" # device name of your disk
+  - partitiontable: "/dev/sda" # device name of your disk
+  - format: "/dev/sda" # device name of your disk
+  - mount: "/dev/sda" # device name of your disk
   - bootstrap:
   - fstab:
   - chroot:
       user: "root"
       steps:
         - systemsetup:
-        - createuser: "#user#" # set this to the name of your user
+        - createuser: "alpha" # set this to the name of your user
         - packages: "root"
         - script: "root"
-        - bootloader: "#disk#" # device name of your disk
+        - bootloader: "/dev/sda" # device name of your disk
   - chroot:
-      user: "#user#"
+      user: "alpha"
       steps:
         - script: "yayinstall"
         - packages: "yay"

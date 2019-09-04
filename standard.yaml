@@ -1,27 +1,6 @@
-models:
-  - disks:
-      - disk:
-          device: "#disk#"
-          size: "#size#"
-          gpt: false
-          partitions:
-            - partition:
-                name: "boot"
-                mount: "/boot"
-                filesystem: "#system#"
-                start: "1MiB"
-                end: "200MiB"
-            - partition:
-                name: "root"
-                mount: "/"
-                filesystem: "#system#"
-                start: "800MiB"
-                end: "100%"
   - chroots:
       - chroot:
           name: "root"
-      - chroot:
-          name: "#user#"
   - users:
       - user:
           name: "#user#" # set your username
@@ -53,7 +32,6 @@ models:
       - script:
           name: "yayinstall"
           file: "yayinstall.sh"
-
 execution:
   - partitiontable: "#disk#" # device name of your disk
   - format: "#disk#" # device name of your disk

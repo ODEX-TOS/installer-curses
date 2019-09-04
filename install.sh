@@ -11,7 +11,7 @@ gpt="1"
 
 # if howsize is not -1 then a sepparate homepartition should be created
 homeSize="-1"
-rootSize=""
+rootSize="" 
 
 source "$directory"dialog.sh
 
@@ -80,55 +80,44 @@ function homePartition {
     fi
 }
 
+function addTotal {
+    file=()
 
-function getConfigFile {
+    # first add the header
+    addGptOrMBR
+
+    addEncryption
+
+
+    file+=" standard.yaml"
+}
+
+function addGptOrMBR {
     if [[ "$gpt" == "1" ]]; then
-        #efi section
-        if [[ "$encrypted" == "1" ]]; then
-            # efi encryption section
-            if [[ "$homeSize" == "-1" ]]; then
-                # only root
-                file="gptencrypted.yaml"
-            else
-                # root and home
-                file="gptencryptedhome.yaml"
-            fi
-        else
-            # efi standard section
-            if [[ "$homeSize" == "-1" ]]; then
-                # only root
-                file="gptnormal.yaml"
-
-            else
-                # root and home
-                file="gptnormalhome.yaml"
-            fi
-        fi
+        file+=" gpt.yaml"
     else
-        #mbr section
-        #efi section
-        if [[ "$encrypted" == "1" ]]; then
-            # efi encryption section
-            if [[ "$homeSize" == "-1" ]]; then
-                # only root
-                file="mbrencrypted.yaml"
-            else
-                # root and home
-                file="mbrencryptedhome.yaml"
-            fi
-        else
-            # efi standard section
-            if [[ "$homeSize" == "-1" ]]; then
-                # only root
-                file="mbrnormal.yaml"
-
-            else
-                # root and home
-                file="mbrnormalhome.yaml"
-            fi
-        fi
+        file+=" mbr.yaml"
     fi
 }
+
+function addEncryption {
+        if [[ "$encrypted" == "1" ]]; then
+            file+=" encryption.yaml"
+            # efi encryption section
+            if [[ ! "$homeSize" == "-1" ]]; then
+                # only root
+                file+=" encryptionhome.yaml"
+            fi
+        else
+            file+=" root.yaml"
+            # efi standard section
+            if [[ ! "$homeSize" == "-1" ]]; then
+                file+=" home.yaml"
+            fi
+        fi
+}
+
+
 
 function fileSystem {
     menu "What is your main filesystem" "ext4" "filesystem" "btrfs" "filesystem"
@@ -136,48 +125,70 @@ function fileSystem {
 }
 
 # generate the final config to be used by the backend installer
+#  $1 is the file to copy $2 is the new filename
 function genConfig {
-    cp "$directory""$file" data.yaml
-    sed -i "s;#disk#;$device;" data.yaml
-    sed -i "s;#size#;$diskSize;" data.yaml
-    sed -i "s;#system#;$filesystem;" data.yaml
-    sed -i "s;#epwd#;$epwd;" data.yaml
-    sed -i "s;#rootsize#;$rootSize;" data.yaml
-    sed -i "s;#homesize#;$homeSize;" data.yaml
-    sed -i "s;#user#;$username;" data.yaml
-    sed -i "s;#password#;$password;" data.yaml
-    sed -i "s;#local#;$language;" data.yaml
-    sed -i "s;#keymap#;$keymap;" data.yaml
-    sed -i "s;#host#;$hostname;" data.yaml
-    sed -i "s;#rootpwd#;$rootpwd;" data.yaml
+    cp "$directory""$1" "$2"
+    sed -i "s;#disk#;$device;" "$2"
+    sed -i "s;#size#;$diskSize;" "$2"
+    sed -i "s;#system#;$filesystem;" "$2"
+    sed -i "s;#epwd#;$epwd;" "$2"
+    sed -i "s;#rootsize#;$rootSize;" "$2"
+    sed -i "s;#homesize#;$homeSize;" "$2"
+    sed -i "s;#user#;$username;" "$2"
+    sed -i "s;#password#;$password;" "$2"
+    sed -i "s;#local#;$language;" "$2"
+    sed -i "s;#keymap#;$keymap;" "$2"
+    sed -i "s;#host#;$hostname;" "$2"
+    sed -i "s;#rootpwd#;$rootpwd;" "$2"
 }
 
-prmpt "Setting up the disk"
-#get the disk to install tos on
-getDisk
-# detect if the user wants efi or mbr
-gpt
-# find out if the user wants encryption or not
-encryption
-#find out if the users whats a sepparate home parition
-homePartition
-
-fileSystem
-
-# get the correct template file
-getConfigFile
-
-# get the language of the system
-getlocal
-
-# get the keyboard layout
-getKeymap
-
-# get the hostname and root password
-getHostname
-
-# get information about the user
-getUserNameAndPassword
+# merge 2 files into 1 $1 is the top part of the new file $2 is the bottom part $3 is the new File name
+function mergeFiles {
+        cp "$1" "$3"
+        cat "$2" >> "$3"
+}
 
 
-genConfig
+function askAll {
+    prmpt "This installer will override the entire disk. If you want to install onto a partition then you need to generate the config yourself. Alternativly use the graphical installer or look up a howto on the internet"
+    prmpt "Setting up the disk"
+    #get the disk to install tos on
+    getDisk
+    # detect if the user wants efi or mbr
+    gpt
+    # find out if the user wants encryption or not
+    encryption
+    #find out if the users whats a sepparate home parition
+    homePartition
+
+    fileSystem
+
+    # get the language of the system
+    getlocal
+
+    # get the keyboard layout
+    getKeymap
+
+    # get the hostname and root password
+    getHostname
+
+    # get information about the user
+    getUserNameAndPassword
+} 
+
+# interactive asker for generating the correct variables
+askAll
+
+function genFile {
+    addTotal
+    touch data.yaml
+    for i in ${file[@]}; do
+            cat $i >> data.yaml
+           
+    done
+    #generate different part
+    genConfig "data.yaml" "gen.yaml"
+    rm data.yaml
+}
+
+genFile

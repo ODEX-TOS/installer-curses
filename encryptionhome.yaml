@@ -1,0 +1,4 @@
+                  - volume:
+                      name: "home"
+                      size: "#homesize#"
+                      mountpoint: "/home"

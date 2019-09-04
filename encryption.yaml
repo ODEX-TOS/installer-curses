@@ -1,0 +1,13 @@
+            - partition:
+                name: "root"
+                mount: "/"
+                filesystem: "luks"
+                start: "800MiB"
+                end: "100%"
+                encrypted: True
+                password: "#epwd#"
+                logicvolumes:
+                  - volume:
+                      name: "root"
+                      size: "#rootsize#"
+                      mountpoint: "/"

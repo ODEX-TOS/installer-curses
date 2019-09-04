@@ -1,0 +1,12 @@
+            - partition:
+                name: "root"
+                mount: "/"
+                filesystem: "#system#"
+                start: "800MiB"
+                end: "#rootsize#"
+            - partition:
+                name: "home"
+                mount: "/home"
+                filesystem: "#system#"
+                start: "200MiB"
+                end: "100%"
