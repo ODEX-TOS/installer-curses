@@ -183,7 +183,7 @@ function genFile {
     addTotal
     touch data.yaml
     for i in ${file[@]}; do
-            cat $i >> data.yaml
+            cat "$directory"$i >> data.yaml
            
     done
     #generate different part
