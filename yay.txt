@@ -55,9 +55,6 @@ xcb-util-xrm
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
-zsh
-zsh-autosuggestions
-zsh-syntax-highlighting
 xorg-fonts-type1
 xorg-server xorg-xbacklight
 xorg-xclipboard
@@ -85,3 +82,4 @@ font-bh-ttf
 bdf-unifont
 ttf-dejavu
 python-dbus
+kvantum-qt5

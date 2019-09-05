@@ -88,8 +88,16 @@ function addTotal {
 
     addEncryption
 
+    addServer
+}
 
-    file+=" standard.yaml"
+function addServer {
+    ask "Do you want to install the server edition or the desktop edition" "desktop"
+    if [[ "$result" == "desktop" ]]; then
+        file+=" standard.yaml"
+    else
+        file+=" server.yaml" 
+    fi
 }
 
 function addGptOrMBR {
