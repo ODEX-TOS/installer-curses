@@ -47,5 +47,4 @@ execution:
       steps:
         - script: "yayinstall"
         - packages: "yay"
-        - packages: "wayland"
         - script: "userinstall"
