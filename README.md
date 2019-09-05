@@ -52,6 +52,20 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+> This installer has a limited customizability. If you want more "rare" configurations you shoudl use the `installer-gui` or create your own configs and generate your installer using the `tos-installer-backend`
+
+This installer has the majority of normal features a normal user would need. These you can do with the installer
+
+* setup a efi or mbr disk
+* setup a disk with or without encryption
+* setup a disk with 1 root partition or with both a root and a home partition
+
+The installer will only install 1 disk, if you need to mount multiple disks you should do that after the install or edit the gen.yaml file yourself
+
+The installer doesn't support dual booting or resizing exisiting partitions. If you want those features you should write your own `yaml` file or use the installer-gui.
+
+If you are using this to build your server and need more features then it is recommended to write your own `yaml` file as they are usefull for mass server deployment.
+
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -98,7 +112,7 @@ The run.sh script is the shell script to run on your live system. This will moun
 bash run.sh
 ```
 
-Now reboot into your new system 
+Now reboot into your new system
 
 _For more examples, please refer to the [Documentation](https://tos.pbfp.xyz/blog)_
 
