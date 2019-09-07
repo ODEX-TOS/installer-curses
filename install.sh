@@ -2,7 +2,7 @@
 
 name=$(basename "$0")
 directory=$(printf "%s" "$0" | sed 's:'"$name"'::')
-
+config="/usr/share/tos-cli-installer/"
 # by default no encryption
 encrypted="0"
 epwd=""
@@ -14,6 +14,7 @@ homeSize="-1"
 rootSize="" 
 
 source "$directory"dialog.sh
+
 
 
 # returns the selected keymap
@@ -135,7 +136,7 @@ function fileSystem {
 # generate the final config to be used by the backend installer
 #  $1 is the file to copy $2 is the new filename
 function genConfig {
-    cp "$directory""$1" "$2"
+    cp "$config""$1" "$2"
     sed -i "s;#disk#;$device;" "$2"
     sed -i "s;#size#;$diskSize;" "$2"
     sed -i "s;#system#;$filesystem;" "$2"
@@ -191,7 +192,7 @@ function genFile {
     addTotal
     touch data.yaml
     for i in ${file[@]}; do
-            cat "/usr/share/tos-cli-installer/"$i >> data.yaml
+            cat "$config"$i >> data.yaml
            
     done
     #generate different part
