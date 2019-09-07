@@ -191,7 +191,7 @@ function genFile {
     addTotal
     touch data.yaml
     for i in ${file[@]}; do
-            cat "$directory"$i >> data.yaml
+            cat "/usr/share/tos-cli-installer/"$i >> data.yaml
            
     done
     #generate different part
