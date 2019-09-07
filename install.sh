@@ -197,7 +197,9 @@ function genFile {
     done
     #generate different part
     genConfig "data.yaml" "gen.yaml"
-    rm data.yaml
+    os-install --in "gen.yaml" --out "run.sh"
+    rm "data.yaml" "gen.yaml"
+    
 }
 
 genFile
