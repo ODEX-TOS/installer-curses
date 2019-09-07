@@ -13,25 +13,25 @@
   - packages:
       - package:
           name: "root"
-          packagefile: "packages.txt"
+          packagefile: "/usr/share/tos-cli-installer/packages.txt"
       - package:
           name: "yay"
           install: "yay -Syu --noconfirm"
-          packagefile: "yay.txt"
+          packagefile: "/usr/share/tos-cli-installer/yay.txt"
       - package:
           name: "wayland"
           install: "yay -Syu --noconfirm"
-          packagefile: "wayland.txt"
+          packagefile: "/usr/share/tos-cli-installer/wayland.txt"
   - scripts:
       - script:
           name: "root"
-          file: "rootinstall.sh"
+          file: "/usr/share/tos-cli-installer/rootinstall.sh"
       - script:
           name: "userinstall"
-          file: "userinstall.sh"
+          file: "/usr/share/tos-cli-installer/userinstall.sh"
       - script:
           name: "yayinstall"
-          file: "yayinstall.sh"
+          file: "/usr/share/tos-cli-installer/yayinstall.sh"
 execution:
   - partitiontable: "#disk#" # device name of your disk
   - format: "#disk#" # device name of your disk
