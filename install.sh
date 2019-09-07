@@ -136,7 +136,7 @@ function fileSystem {
 # generate the final config to be used by the backend installer
 #  $1 is the file to copy $2 is the new filename
 function genConfig {
-    cp "$config""$1" "$2"
+    cp "$1" "$2"
     sed -i "s;#disk#;$device;" "$2"
     sed -i "s;#size#;$diskSize;" "$2"
     sed -i "s;#system#;$filesystem;" "$2"
