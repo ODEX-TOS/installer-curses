@@ -1,6 +1,6 @@
 # Maintainer: Tom Meyers tom@odex.be
 pkgname=installer-cli
-pkgver=r17.5faae40
+pkgver=r20.e59e5d1
 pkgrel=1
 pkgdesc="CLI interface for installing TOS"
 arch=(any)

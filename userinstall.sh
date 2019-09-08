@@ -49,7 +49,7 @@ cd ~/.vim/bundle/YouCompleteMe
 python3 install.py --all
 sudo sh -c 'curl https://raw.githubusercontent.com/ODEX-TOS/tos-live/master/toslive/version-edit.txt > /etc/version'
 
-sudo chsh $USER /bin/zsh
+sudo chsh $USER -c /bin/zsh
 
 sudo systemctl enable bluetooth
 sudo systemctl enable sshd
