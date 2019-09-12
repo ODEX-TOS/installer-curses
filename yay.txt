@@ -1,7 +1,6 @@
 i3-gaps-tos
 linux-tos
 st-tos
-vim
 bluez
 ccat
 compton
@@ -10,7 +9,6 @@ docker-compose
 dunst
 feh
 firefox-developer-edition
-gimp
 glances
 i3lock-next-git
 lsd
@@ -19,7 +17,6 @@ pavucontrol
 polybar-git
 pulseaudio
 python-pip
-r8152-dkms
 rofi
 screen
 xf86-input-mouse
@@ -32,7 +29,6 @@ networkmanager
 netctl
 openssh
 arandr
-mono
 alsa-utils
 bluez-utils
 chafa

@@ -1,14 +1,18 @@
+
 cd
 git clone https://github.com/ODEX-TOS/tools.git bin
 cd
 rm -rf .config
 git clone https://github.com/ODEX-TOS/dotfiles .config
-sed -i 's;home/zeus;'$HOME';g' $HOME/.config/i3/config
+sed -i 's;/home/zeus;'$HOME';g' $HOME/.config/i3/config
 sed -i 's;/home/zeus;'$HOME';g' $HOME/.config/sway/config
 #setup firefox
 mkdir -p $HOME/.mozilla/firefox/tos.default
 cp $HOME/.config/tos/profiles.ini $HOME/.mozilla/firefox/profiles.ini
 cp -r $HOME/.config/tos/tos-firefox/* $HOME/.mozilla/firefox/tos.default
+
+yay -Syu --noconfirm zsh
+sudo chsh $USER -s /bin/zsh
 rm -rf $HOME/.oh-my.zsh
 curl https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o install.sh
 export RUNZSH=no
@@ -25,8 +29,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.v
 ln .config/.Xresources $HOME/.Xresources
 mkdir -p $HOME/.icons/default
 ln .config/index.theme $HOME/.icons/default/index.theme
-cd $HOME/.oh-my-zsh
-git clone https://github.com/ODEX-TOS/zsh-load load
+git clone https://github.com/ODEX-TOS/zsh-load $HOME/.oh-my-zsh/load
 cd
 rmdir Pictures
 git clone https://github.com/ODEX-TOS/Pictures Pictures
@@ -49,8 +52,6 @@ cd ~/.vim/bundle/YouCompleteMe
 python3 install.py --all
 sudo sh -c 'curl https://raw.githubusercontent.com/ODEX-TOS/tos-live/master/toslive/version-edit.txt > /etc/version'
 
-yay -Syu --noconfirm zsh
-sudo chsh $USER -s /bin/zsh
 
 sudo systemctl enable bluetooth
 sudo systemctl enable sshd

@@ -13,4 +13,3 @@ printf "[tos]\nSigLevel = Optional TrustAll\nServer = https://repo.pbfp.xyz\n" >
 
 systemctl enable NetworkManager
 systemctl enable dhcpcd
-
