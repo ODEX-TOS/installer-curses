@@ -87,7 +87,7 @@ pip install python-yaml
  
 1. Clone the installer-curses repo
 ```sh
-git clone https:://github.com/ODEX-TOS/installer-curses.git
+git clone https://github.com/ODEX-TOS/installer-curses.git
 ```
 2. add execute permission
 ```bash
