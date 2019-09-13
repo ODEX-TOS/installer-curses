@@ -2,3 +2,4 @@ wayland
 sway
 waybar
 xorg-server-xwayland
+light
