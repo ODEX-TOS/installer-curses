@@ -1,4 +1,5 @@
 linux-tos
+tos-tools
 vim
 ccat
 docker

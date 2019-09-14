@@ -1,7 +1,5 @@
 
 cd
-git clone https://github.com/ODEX-TOS/tools.git bin
-cd
 rm -rf .config
 git clone https://github.com/ODEX-TOS/dotfiles .config
 sed -i 's;/home/zeus;'$HOME';g' $HOME/.config/i3/config

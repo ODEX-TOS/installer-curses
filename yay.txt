@@ -1,4 +1,5 @@
 i3-gaps-tos
+tos-tools
 linux-tos
 st-tos
 bluez
