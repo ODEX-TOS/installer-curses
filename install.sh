@@ -31,7 +31,7 @@ function getDisk {
 }
 
 function getlocal {
-    menu "What is your language?" $(cat /etc/locale.gen | awk '$0 ~ /^#[a-zA-Z].*\.UTF-8/' | sed 's:#::' | tr -d '\n')
+    menu "What is your language?" $(echo "$(echo 'en_US.UTF-8' && awk '$0 ~ /^(#){0,1}[a-zA-Z_]*.UTF-8/' /etc/locale.gen)" | sed 's:#::' | awk '{print $1}')
     language="$result"
 }
 
