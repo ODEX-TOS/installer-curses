@@ -38,6 +38,8 @@ git clone https://github.com/zsh-users/zsh-completions.git ~/.oh-my-zsh/custom/p
 git clone https://github.com/denysdovhan/spaceship-prompt.git ~/.oh-my-zsh/custom/themes/spaceship-prompt
 ln -s ~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme
 
+curl https://github.com/ODEX-TOS/tools/blob/master/_tos -o  ~/.oh-my-zsh/custom/plugins/zsh-completions
+
 printf "xrdb ~/.Xresources\nexec i3" >> ~/.xinitrc
 
 mkdir -p ~/.vim/colors
