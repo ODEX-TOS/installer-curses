@@ -16,4 +16,4 @@ systemctl enable dhcpcd
 
 sudo pacman -Syu tos-grub-theme
 
-printf "GRUB_THEME='/boot/grub/themes/tos/theme.txt'"
+printf "GRUB_THEME='/boot/grub/themes/tos/theme.txt'" >> /etc/default/grub
