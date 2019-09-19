@@ -3,7 +3,8 @@ cd
 rm -rf .config
 git clone https://github.com/ODEX-TOS/dotfiles .config
 sed -i 's;/home/zeus;'$HOME';g' $HOME/.config/i3/config
-sed -i 's;/home/zeus;'$HOME';g' $HOME/.config/sway/config
+sed -i 's;/home/zeus;'$HOME';g' $HOME/.config/sway/config_azerty
+sed -i 's;/home/zeus;'$HOME';g' $HOME/.config/sway/config_qwerty
 #setup firefox
 mkdir -p $HOME/.mozilla/firefox/tos.default
 cp $HOME/.config/tos/profiles.ini $HOME/.mozilla/firefox/profiles.ini
