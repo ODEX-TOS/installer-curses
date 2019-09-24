@@ -13,21 +13,21 @@
   - packages:
       - package:
           name: "root"
-          packagefile: "packages.txt"
+          packagefile: "/usr/share/tos-cli-installer/packages.txt"
       - package:
           name: "yay"
           install: "yay -Syu --noconfirm"
-          packagefile: "yayserver.txt"
+          packagefile: "/usr/share/tos-cli-installer/yayserver.txt"
   - scripts:
       - script:
           name: "root"
-          file: "rootinstall.sh"
+          file: "/usr/share/tos-cli-installer/rootinstall.sh"
       - script:
           name: "userinstall"
-          file: "userserverinstall.sh"
+          file: "/usr/share/tos-cli-installer/userserverinstall.sh"
       - script:
           name: "yayinstall"
-          file: "yayinstall.sh"
+          file: "/usr/share/tos-cli-installer/yayinstall.sh"
 execution:
   - partitiontable: "#disk#" # device name of your disk
   - format: "#disk#" # device name of your disk
