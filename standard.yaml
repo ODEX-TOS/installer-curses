@@ -1,7 +1,16 @@
-   - chroots:
+  - chroots:
                 - chroot:
                     name: "root"
-   - packages:
+  - users:
+      - user:
+          name: "#user#" # set your username
+          password: "#password#" # set its password
+  - system:
+      local: "#local#" # change the language of your system (a list is found in /etc/locale.gen)
+      keymap: "#keymap#" # set your keymap
+      hostname: "#host#" # the hostname of your system
+      password: "#rootpwd#" # the root password
+  - packages:
                 - package:
                     name: "root"
                     packagefile: "packages.txt"
@@ -13,7 +22,7 @@
                     name: "wayland"
                     install: "yay -Syu --noconfirm"
                     packagefile: "wayland.txt"
-   - scripts:
+  - scripts:
                 - script:
                     name: "root"
                     file: "rootinstall.sh"
