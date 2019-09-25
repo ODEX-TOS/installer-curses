@@ -79,4 +79,4 @@ font-bh-ttf
 bdf-unifont
 ttf-dejavu
 python-dbus
-kvantum-qt5
+xf86-input-synaptics
