@@ -47,6 +47,9 @@ BOOTSTRAP: "pacstrap /mnt {} --noconfirm"
 BOOTSTRAP_PACKAGES:
   - base
   - base-devel
+  - linux
+  - linux-tos
+  - linux-firmware
   - efibootmgr
   - vim
   - dialog
